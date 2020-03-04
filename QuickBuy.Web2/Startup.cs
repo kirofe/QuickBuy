@@ -1,19 +1,21 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using QuickBuy.Repositorio.Contexto;
 
-namespace QuickBuy.Web
+namespace QuickBuy.Web2
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("config.json", optional:false, reloadOnChange:true);
+            builder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
         }
@@ -23,8 +25,9 @@ namespace QuickBuy.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //services.AddDbContext<QuickBuyContexto>
+            services.AddControllersWithViews();
+            var connectionString = Configuration.GetConnectionString("QuickBuyDB");
+            services.AddDbContext<QuickBuyContexto>(option => option.UseMySql(connectionString, m => m.MigrationsAssembly("QuickBuy.Repositorio")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -34,7 +37,7 @@ namespace QuickBuy.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -49,13 +52,18 @@ namespace QuickBuy.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
-            app.UseMvc(routes =>
+            if (!env.IsDevelopment())
             {
-                routes.MapRoute(
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
@@ -67,8 +75,7 @@ namespace QuickBuy.Web
 
                 if (env.IsDevelopment())
                 {
-                    //spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }
