@@ -2,12 +2,13 @@
 
 namespace QuickBuy.Dominio.Entidades
 {
-    class Usuario : Entidade
+    public class Usuario : Entidade
     {        
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Nome { get; set; }
+        public int    Id        { get; set; }
+        public string Email     { get; set; }
+        public string Nome      { get; set; }
         public string SobreNome { get; set; }
+        public string Senha     { get; set; }
 
         /// <summary>
         /// Um Usuario pode ter nenhum ou muitos pedidos
@@ -16,7 +17,14 @@ namespace QuickBuy.Dominio.Entidades
 
         public override void Validade()
         {
-            throw new System.NotImplementedException();
+
+            LimparMensagensValidacao();
+
+            if (string.IsNullOrEmpty(Email))
+                AdicionarCritica("Crítica - Email não foi informado");
+
+            if (string.IsNullOrEmpty(Senha))
+                AdicionarCritica("Crítica - Senha não foi informado");
         }
     }
 }

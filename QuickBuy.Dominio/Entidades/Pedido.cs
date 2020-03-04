@@ -34,8 +34,12 @@ namespace QuickBuy.Dominio.Entidades
 
             if (!ItensPedidos.Any())
                 AdicionarCritica("Crítica - Pedido não ficar sem item de pedido");
+
             if(string.IsNullOrEmpty(CEP))
                 AdicionarCritica("Crítica - CEP deve estar preenchido");
+
+            if (FormaPagamentoId == 0)
+                AdicionarCritica("Crítica - Não foi informado a forma de pagamento");
 
         }
     }
