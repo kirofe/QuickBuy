@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickBuy.Dominio", "QuickBu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickBuy.Repositorio", "QuickBuy.Repositorio\QuickBuy.Repositorio.csproj", "{9FBB4100-E0DD-4871-AE4F-5C0F85A1615A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickBuy.Web2", "QuickBuy.Web2\QuickBuy.Web2.csproj", "{BCF704F6-6CFB-4D32-AE58-526DD689F732}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickBuy.Web", "QuickBuy.Web2\QuickBuy.Web.csproj", "{BCF704F6-6CFB-4D32-AE58-526DD689F732}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
