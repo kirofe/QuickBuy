@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../../modelo/usuario';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,15 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
   public pikachu = "../../assets/detectivepikachu.jpg";
-  public titulo  = "Pikachu";
-  public email = "";
-  public senha = "";
+  public titulo  = "Pikachu";  
+  public usuario;
 
-  constructor() { }
+  constructor() {
+    this.usuario = new Usuario();
+  }
 
   entrar() {
-    alert(this.email + " - " + this.senha);
+    alert(this.usuario.email + " - " + this.usuario.senha);
   }
 
   ngOnInit() {
