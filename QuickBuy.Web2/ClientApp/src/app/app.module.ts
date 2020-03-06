@@ -27,10 +27,11 @@ import { LoginComponent } from './usuario/login/login.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: ''          , component: HomeComponent, pathMatch: 'full' },
+      { path: 'counter'   , component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'produto', component: ProdutoComponent },
+      { path: 'produto'   , component: ProdutoComponent },
+      { path: 'entrar'    , component: LoginComponent },
     ])
   ],
   providers: [],

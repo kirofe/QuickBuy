@@ -5,7 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
+  public pikachu = "../assets/detectivepikachu.jpg";
+  public titulo = "Pikachu";
 
   constructor() { }
 
