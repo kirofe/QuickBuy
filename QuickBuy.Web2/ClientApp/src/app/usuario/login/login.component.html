@@ -5,12 +5,32 @@
     <input type="email" id="inputEmail"
            name="email" placeholder="Informe o seu Email"
            class="form-control mb-2"
-           [(ngModel)]="usuario.email"/>
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           email
+           required
+    />
+    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        Email é de preenchimendo obrigatorio
+      </div>
+
+      <div *ngIf="email.errors.email">
+        Email não esta no formato correto
+      </div>
+    </div>
     <label for="inputSenha" class="sr-only">Senha</label>
     <input type="password" id="inputSenha"
            name="senha" placeholder="Senha"
            class="form-control mb-2" 
-           [(ngModel)]="usuario.senha"/>
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required/>
+    <div class="alert alert-danger" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div *ngIf="senha.errors.required">
+        Senha é de preenchimendo obrigatorio
+      </div>
+    </div>
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
     <img [src]="pikachu" [title]="titulo" class="pikachu" />
     <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
