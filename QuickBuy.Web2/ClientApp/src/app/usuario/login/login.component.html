@@ -13,5 +13,8 @@
            [(ngModel)]="usuario.senha"/>
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
     <img [src]="pikachu" [title]="titulo" class="pikachu" />
+    <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
+      Usuario XD      
+    </div>
   </form>
 </div>
