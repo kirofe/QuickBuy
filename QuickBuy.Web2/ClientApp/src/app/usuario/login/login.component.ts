@@ -7,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-  public pikachu = "../assets/detectivepikachu.jpg";
+  public pikachu = "../../assets/detectivepikachu.jpg";
   public titulo = "Pikachu";
 
   constructor() { }
+
+  on_keypress() {
+    alert("clickei xD");
+  }
+
+  entrar() {
+    alert("Hello World!!!!!");
+  }
 
   ngOnInit() {
   }
